@@ -46,7 +46,7 @@ Run the script as with the following parameters:
     - i.e See dicitonary.csv for example
     
 ```
-python dictionary_tagger.py -i gs://aniftos-example-dataset/automl_export_example/export_data-test_import_entity-2020-04-09T13:39:13.950Z/text_extraction.csv -t gs://aniftos-example-dataset/automl_export_example/t1/ -d dictionary.csv 
+python dictionary_tagger.py -i gs://bucket/export_path/text_extraction.csv -t gs://bucket/annotated_data_export_path -d dictionary.csv 
 ```
 
 ### Import modified data to AutoML NL Entities
