@@ -1,22 +1,43 @@
+## This script describes how to annotate Entities in PDF documents using a dictionary file in a semi-automated way.
+
+**3 steps in the process**
+- Import PDF data to AutoML (and let AutoML do the text extraction for you)
+- Export the data after AutoML process them during import, to a GCS location
+- Pull the data from GCS and process using a dictionary in order to tag entities
+- Import the data again to AutoML NL
+
+
+### Import PDF data to AutoML NL Entities
 Generate structure for import on AutoML and upload to GCS
 
 - **Ensure there are no pdfs with same name if you are pulling from different folders**
 - **Ensure bucket is empty or that you do not mind overwritting existing files with same filename**
+
+*Modify the bucket path below*
 ```
-export BUCKET=gs://aniftos-example-dataset/automl_import_example/
+export BUCKET=gs://bucket/export_path/ 
 python2.7 input_helper_v2.py -v -s train,train/*.pdf validation,val/*.pdf test,test/*.pdf -t ${BUCKET}
 ```
 
-upload using the ul,
-export using the ui
+<br >
+<br >
 
-```
-gsutil cp -r gs://aniftos-example-dataset/automl_export_example/* download
+Upload the generated data from your path gs://bucket/export_path/ to AutoML NL Entities Using the UI
 
-```
+![import img](import.png)
+<br >
+<br >
+
+### Export AutoML NL Entities Data
+After the import is done, export the data using the UI (The export might be dissabled for a while, try refreshing the page)
+
+![export img](export.png)
 
 
-run the script as with the following parameters:
+### Process using a dictionary
+After export is completed:
+
+Run the script as with the following parameters:
 - -i   :   Path to exported .csv file 
     - i.e gs://bucket/export_path/text_extraction.csv
 - -t : Target path, 
@@ -27,3 +48,10 @@ run the script as with the following parameters:
 ```
 python dictionary_tagger.py -i gs://aniftos-example-dataset/automl_export_example/export_data-test_import_entity-2020-04-09T13:39:13.950Z/text_extraction.csv -t gs://aniftos-example-dataset/automl_export_example/t1/ -d dictionary.csv 
 ```
+
+### Import modified data to AutoML NL Entities
+Import modified data from the target path gs://bucket/annotated_data_export_path to AutoML NL Entities Using the UI
+
+![import img](import.png)
+<br >
+<br >
