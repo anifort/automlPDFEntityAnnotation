@@ -7,7 +7,7 @@
 - Import the data again to AutoML NL
 
 
-### Import PDF data to AutoML NL Entities
+### 1. Import PDF data to AutoML NL Entities
 Generate structure for import on AutoML and upload to GCS
 
 - **Ensure there are no pdfs with same name if you are pulling from different folders**
@@ -28,13 +28,13 @@ Upload the generated data from your path gs://bucket/export_path/ to AutoML NL E
 <br >
 <br >
 
-### Export AutoML NL Entities Data
+### 2. Export AutoML NL Entities Data
 After the import is done, export the data using the UI (The export might be dissabled for a while, try refreshing the page)
 
 ![export img](export.png)
 
 
-### Process using a dictionary
+### 3. Process using a dictionary
 After export is completed:
 
 Run the script as with the following parameters:
@@ -49,7 +49,7 @@ Run the script as with the following parameters:
 python dictionary_tagger.py -i gs://bucket/export_path/text_extraction.csv -t gs://bucket/annotated_data_export_path -d dictionary.csv 
 ```
 
-### Import modified data to AutoML NL Entities
+### 4. Import modified data to AutoML NL Entities
 Import modified data from the target path gs://bucket/annotated_data_export_path to AutoML NL Entities Using the UI
 
 ![import img](import.png)
