@@ -1,6 +1,6 @@
 ## This script describes how to annotate Entities in PDF documents using a dictionary file in a semi-automated way.
 
-**3 steps in the process**
+**4 steps in the process**
 - Import PDF data to AutoML (and let AutoML do the text extraction for you)
 - Export the data after AutoML process them during import, to a GCS location
 - Pull the data from GCS and process using a dictionary in order to tag entities
